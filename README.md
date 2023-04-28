@@ -1,6 +1,6 @@
 # foffinf
 
-A hack lib to use logging with the new Format Specification Mini-Language
+A way to use stdlib's logging with the new Format Specification Mini-Language
 
 # What?
 
@@ -10,9 +10,9 @@ We know it's bad to do this:
 logger.info(f"The result is {result:05d}")
 ```
 
-We should never build the log message ourselves, basically because two details that properly using logging avoids: 
-- performance: if the logging level is below INFO the resulting message is not really built
-- robustness: if `result` happens to not be a number that code will crash and logging will just present some error message but everything will continue
+We should never build the log message ourselves, basically because two situations that are avoided by properly using logging: 
+- performance: if the logging level is below INFO (in the case of the example) the resulting message is not really built
+- robustness: if `result` happens to not be a number, that example will crash, but the `logging` infrastructure will just present some error message (and everything will continue)
 
 The recommended way is:
 
@@ -22,7 +22,7 @@ logger.info("The result is %05d", result)
 
 But wait, we're living in the 21st century, are we still using _printf-style_ string formatting?
 
-With foffinf we can now write:
+With `foffinf` we can now write:
 
 ```python
 logger.info("The result is {:05d}", result)
@@ -41,7 +41,6 @@ So we need to indicate which module (the one we're writing, of course) shall use
 
 ```python
 import logging
-
 import foffinf
 
 foffinf.formatize(__name__)
@@ -60,10 +59,12 @@ fofinff.formatize("mylib.mod1")
 logging.getLogger("mylib.mod1")  # affected!
 logging.getLogger("mylib")  # NOT affected
 logging.getLogger("mylib.mod2")  # NOT affected 
+logging.getLogger()  # NOT affected 
+logging.getLogger("otherlib")  # NOT affected 
 logging.getLogger("mylib.mod1.submod")  # NOT affected 
 ```
 
-Note in that last line that by default it neither will affect submodules. To affect all children of a logger tree node:
+Note (in that last line) that by default it will neither affect submodules. To affect all children of a logger tree node:
 
 ```
 fofinff.formatize("mylib.mod1", scatter=True)
