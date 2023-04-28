@@ -1,6 +1,6 @@
 # foffinf
 
-A way to use stdlib's logging with the new Format Specification Mini-Language
+A way to use stdlib's logging with the new Format Specification Mini-Language.
 
 # What?
 
@@ -31,6 +31,8 @@ logger.info("The result is {:05d}", result)
 Welcome to the future!
 
 ![dino](https://github.com/facundobatista/foffinf/blob/main/dino.png?raw=True)
+
+Trust the dino :)
 
 
 # How to use it

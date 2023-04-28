@@ -2,7 +2,7 @@
 
 # Copyright 2023 Facundo Batista
 # Licensed under the GPL v3 License
-# For further info, check https://github.com/facundobatista/runish
+# For further info, check https://github.com/facundobatista/foffinf
 
 """Setup script for foffinf."""
 
@@ -16,9 +16,10 @@ setup(
     author_email="facundo@taniquetil.com.ar",
     description="A way to use stdlib's logging with the new Format Specification Mini-Language.",
     long_description=open("README.md", "rt", encoding="utf8").read(),
-    url="https://github.com/facundobatista/runish",
+    long_description_content_type="text/markdown",
+    url="https://github.com/facundobatista/foffinf",
     license="GPL-v3",
-    packages=["runish"],
+    packages=["foffinf"],
     classifiers=[
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
         "Operating System :: OS Independent",
