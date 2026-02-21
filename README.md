@@ -10,7 +10,7 @@ We know it's bad to do this:
 logger.info(f"The result is {result:05d}")
 ```
 
-We should never build the log message ourselves, basically because two situations that are avoided by properly using logging: 
+We should never build the log message ourselves, basically because two situations that are avoided by properly using logging:
 - performance: if the logging level is below INFO (in the case of the example) the resulting message is not really built
 - robustness: if `result` happens to not be a number, that example will crash, but the `logging` infrastructure will just present some error message (and everything will continue)
 
@@ -60,10 +60,10 @@ fofinff.formatize("mylib.mod1")
 
 logging.getLogger("mylib.mod1")  # affected!
 logging.getLogger("mylib")  # NOT affected
-logging.getLogger("mylib.mod2")  # NOT affected 
-logging.getLogger()  # NOT affected 
-logging.getLogger("otherlib")  # NOT affected 
-logging.getLogger("mylib.mod1.submod")  # NOT affected 
+logging.getLogger("mylib.mod2")  # NOT affected
+logging.getLogger()  # NOT affected
+logging.getLogger("otherlib")  # NOT affected
+logging.getLogger("mylib.mod1.submod")  # NOT affected
 ```
 
 Note (in that last line) that by default it will neither affect submodules. To affect all children of a logger tree node:
@@ -73,7 +73,40 @@ fofinff.formatize("mylib.mod1", scatter=True)
 
 logging.getLogger("mylib.mod1")  # affected!
 logging.getLogger("mylib")  # NOT affected
-logging.getLogger("mylib.mod2")  # NOT affected 
+logging.getLogger("mylib.mod2")  # NOT affected
 logging.getLogger("mylib.mod1.submod_a")  # affected!
 logging.getLogger("mylib.mod1.submod_b")  # affected!
 ```
+
+## I can't make it work when setup logging in a helper file
+
+It's typical to have this structure:
+```
+.
+├── somefile
+├── LICENSE
+├── otherfiles
+├── the_super_lib
+│   ├── magic_code.py
+│   ├── some_log_setup.py
+│   ├── etc.py
+├── README.md
+└── ...
+```
+
+In all parts of your code, you just do
+```
+logger = logging.getLogger(__name__)
+```
+
+But the logging setup is done in a module inside your lib, `some_log_setup.py`. In this case is exactly where you need to use the `scatter` parameter explained above, stating explicitly the root of your lib.
+
+So, inside `some_log_setup.py`:
+
+```
+import foffinf
+...
+foffinf.formatize("the_super_lib", scatter=True)
+```
+
+This will _formatize_ the calls in all your library's logging tree without affecting other libraries.
