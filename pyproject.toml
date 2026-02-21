@@ -1,0 +1,25 @@
+# Copyright 2023-2026 Facundo Batista
+# Licensed under the GPL v3 License
+# For further info, check https://github.com/facundobatista/foffinf
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "foffinf"
+version = "0.3"
+description = "A way to use stdlib's logging with the new Format Specification Mini-Language."
+readme = "README.md"
+requires-python = ">=3.0"
+license = "GPL-3.0-or-later"
+authors = [
+    {name = "Facundo Batista", email = "facundo@taniquetil.com.ar"}
+]
+classifiers = [
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+]
+
+[project.urls]
+Homepage = "https://github.com/facundobatista/foffinf"
