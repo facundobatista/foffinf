@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright 2023 Facundo Batista
+# Copyright 2023-2026 Facundo Batista
 # Licensed under the GPL v3 License
 # For further info, check https://github.com/facundobatista/foffinf
 
@@ -11,7 +11,7 @@ from setuptools import setup
 
 setup(
     name="foffinf",
-    version="0.1",
+    version="0.2",
     author="Facundo Batista",
     author_email="facundo@taniquetil.com.ar",
     description="A way to use stdlib's logging with the new Format Specification Mini-Language.",

@@ -99,7 +99,7 @@ In all parts of your code, you just do
 logger = logging.getLogger(__name__)
 ```
 
-But the logging setup is done in a module inside your lib, `some_log_setup.py`. In this case is exactly where you need to use the `scatter` parameter explained above, stating explicitly the root of your lib.
+But the logging setup is done in a module inside your lib, `some_log_setup.py`. In this case is exactly where you need to use the `scatter` parameter explained before, stating explicitly the root of your lib.
 
 So, inside `some_log_setup.py`:
 
