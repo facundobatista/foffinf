@@ -110,3 +110,22 @@ foffinf.formatize("the_super_lib", scatter=True)
 ```
 
 This will _formatize_ the calls in all your library's logging tree without affecting other libraries.
+
+
+## What about using named replacements?
+
+The logging module treats a passed single dictionary as the possible replacements for named values. We honour that, so this is supported:
+
+```python
+>>> info = {"foo": 3, "bar": 5}
+>>> logger.info("The result is {foo} and {bar}", result)
+The result is 3 and 5
+```
+
+If a single no-named parameter is used the dictionary is just shown:
+
+```python
+>>> info = {"foo": 3, "bar": 5}
+>>> logger.info("The result is {}", result)
+The result is {"foo": 3, "bar": 5}
+```

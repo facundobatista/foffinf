@@ -44,3 +44,21 @@ def test_error(logs):
     logger.info("test logger {:05d}", 123, "onetoomany")  # this will fail, but not crash!
     logger.info("continued after bad log call")
     assert "continued after bad log call" in logs.info
+
+
+def test_singledict_one_value_intended(logs):
+    """Pass a single dictionary as the intended value to be logged."""
+    formatize("mylib")
+    logger = logging.getLogger("mylib")
+
+    logger.info("testlogger {}", {"foo": 3, "bar": 5})
+    assert "testlogger {'foo': 3, 'bar': 5}" in logs.info
+
+
+def test_singledict_parameterized_format(logs):
+    """Pass a single dictionary as the source of multiple named values."""
+    formatize("mylib")
+    logger = logging.getLogger("mylib")
+
+    logger.info("testlogger {bar}--{foo}", {"foo": 3, "bar": 5})
+    assert "testlogger 5--3" in logs.info

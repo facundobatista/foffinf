@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "foffinf"
-version = "0.3"
+version = "0.4"
 description = "A way to use stdlib's logging with the new Format Specification Mini-Language."
 readme = "README.md"
 requires-python = ">=3.0"
